@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <script src="./js/canvas-all.js" />
+  </head>
+  <body>
+    <h1>埋め込みテスト</h1>
+    <div id="js-canvasArea">表示エリア</div>
+    <script>
+      Sfdc.canvas.client.refreshSignedRequest(function(data) {
+        if (data.status === 200) {
+
+          const signedRequest =  data.payload.response;
+          console.log(signedRequest);
+          const part = signedRequest.split('.')[1];
+          const obj = JSON.parse(Sfdc.canvas.decode(part));
+          Sfdc.canvas.client.autogrow(obj.client); // iframeリサイズ
+          console.log(obj);
+          const authBlock = document.getElementById('js-canvasArea');
+          authBlock.innerHTML = JSON.stringify(obj);
+        }
+      });
+    </script>
+  </body>
+</html>
