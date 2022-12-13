@@ -6,6 +6,7 @@
   <body>
     <h1>埋め込みテスト</h1>
     <div id="js-canvasArea">表示エリア</div>
+    <button id="js-insertBtn">取引先作成ボタン</button>
     <script>
       Sfdc.canvas.client.refreshSignedRequest(function(data) {
         if (data.status === 200) {
@@ -18,6 +19,26 @@
           console.log(obj);
           const authBlock = document.getElementById('js-canvasArea');
           authBlock.innerHTML = JSON.stringify(obj);
+          // const parseSignedRequest = Sfdc.canvas.decode(part);
+          // const conn = new jsforce.Connection({ signedRequest: parseSignedRequest });
+          
+          // // 作成
+          // const insertBtn = document.getElementById('js-insertBtn');
+          // insertBtn.addEventListener('click', function () {
+          //   conn.sobject('Account').create({ Name : '株式会社 Salesforce Canvas' }, function(err, ret) {
+          //     if (err || !ret.success) { return console.error(err, ret); }
+          //     console.log("Created record id : " + ret.id);
+          //   });
+          // });
+
+          // // 検索
+          // conn.query('SELECT Id, Name FROM Account LIMIT 1', function(err, res) {
+          //   if (err) {
+          //     console.error(err)
+          //   }
+          //   const canvasArea = document.getElementById('js-canvasArea');
+          //   canvasArea.innerHTML = JSON.stringify(res);
+          // });
         }
       });
     </script>
